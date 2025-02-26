@@ -1,8 +1,15 @@
-FROM alpine:latest
+#e the official OpenJDK image from Docker Hub (or Podman registry)
+FROM openjdk:17-jdk-slim
 
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY hello.sh
+# Copy the Java file into the container
+COPY HelloWorld.java .
 
-RUN chmod +x hello.sh
-CMD ["./hello.sh"]
+# Compile the Java program
+RUN javac HelloWorld.java
+
+# Run the Java program
+CMD ["java", "HelloWorld"]
+
